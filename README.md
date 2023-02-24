@@ -1,3 +1,3 @@
 # gem
 
-## Game Engine Math Library for training purpose.
+## C++ Game Engine Math Library for training purpose.
