@@ -2,23 +2,26 @@
 
 #include <iostream>
 
-struct Vector3
+namespace gem
 {
-    float x, y, z;
+    struct Vector3
+    {
+        float x, y, z;
 
-    Vector3();
-    Vector3(float x, float y, float z);
+        Vector3();
+        Vector3(float x, float y, float z);
 
-    float Magnitude() const;
-    Vector3 Normalize() const;
+        float Magnitude() const;
+        Vector3 Normalize() const;
 
-    const Vector3& operator*=(float scalar);
-    const Vector3& operator/=(float scalar);
-    const Vector3 operator*(float scalar) const;
-    const Vector3 operator/(float scalar) const;
-    const Vector3 operator-() const; // unary
-    float& operator[](size_t i);
-    const float& operator[](size_t i) const;
+        const Vector3& operator*=(float scalar);
+        const Vector3& operator/=(float scalar);
+        const Vector3 operator*(float scalar) const;
+        const Vector3 operator/(float scalar) const;
+        const Vector3 operator-() const; // unary
+        float& operator[](size_t i);
+        const float& operator[](size_t i) const;
 
-    friend std::ostream& operator<<(std::ostream& stream, const Vector3& vec);
-};
+        friend std::ostream& operator<<(std::ostream& stream, const Vector3& vec);
+    };
+}
