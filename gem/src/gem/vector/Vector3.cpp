@@ -54,6 +54,32 @@ namespace gem
         return Vector3(-x, -y, -z);
     }
 
+    const Vector3& Vector3::operator+=(const Vector3& vec)
+    {
+        x += vec.x;
+        y += vec.y;
+        z += vec.z;
+        return *this;
+    }
+
+    const Vector3& Vector3::operator-=(const Vector3& vec)
+    {
+        x -= vec.x;
+        y -= vec.y;
+        z -= vec.z;
+        return *this;
+    }
+
+    const Vector3 Vector3::operator+(const Vector3& vec) const
+    {
+        return Vector3(x + vec.x, y + vec.y, z + vec.z);
+    }
+
+    const Vector3 Vector3::operator-(const Vector3& vec) const
+    {
+        return Vector3(x - vec.x, y - vec.y, z - vec.z);
+    }
+
     float& Vector3::operator[](size_t i)
     {
         return (&x)[i]; // no bound checking

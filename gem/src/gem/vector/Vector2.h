@@ -19,6 +19,10 @@ namespace gem
         const Vector2 operator*(float scalar) const;
         const Vector2 operator/(float scalar) const;
         const Vector2 operator-() const; // unary
+        const Vector2& operator+=(const Vector2& vec);
+        const Vector2& operator-=(const Vector2& vec);
+        const Vector2 operator+(const Vector2& vec) const;
+        const Vector2 operator-(const Vector2& vec) const;
         float& operator[](size_t i);
         const float& operator[](size_t i) const;
 

@@ -2,7 +2,7 @@
 
 int main()
 {
-    gem::Vector2 v2(2, 4);
+    gem::Vector2 v1(2, 4);
     gem::Vector3 v3(1, 2, 3);
     gem::Vector4 v4(4, 7, 24, 99);
 

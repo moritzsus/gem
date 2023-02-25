@@ -56,6 +56,34 @@ namespace gem
         return Vector4(-x, -y, -z, -w);
     }
 
+    const Vector4& Vector4::operator+=(const Vector4& vec)
+    {
+        x += vec.x;
+        y += vec.y;
+        z += vec.z;
+        w += vec.w;
+        return *this;
+    }
+
+    const Vector4& Vector4::operator-=(const Vector4& vec)
+    {
+        x -= vec.x;
+        y -= vec.y;
+        z -= vec.z;
+        w -= vec.w;
+        return *this;
+    }
+
+    const Vector4 Vector4::operator+(const Vector4& vec) const
+    {
+        return Vector4(x + vec.x, y + vec.y, z + vec.z, w + vec.w);
+    }
+
+    const Vector4 Vector4::operator-(const Vector4& vec) const
+    {
+        return Vector4(x - vec.x, y - vec.y, z - vec.z, w - vec.w);
+    }
+
     float& Vector4::operator[](size_t i)
     {
         return (&x)[i]; // no bound checking

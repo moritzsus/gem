@@ -52,6 +52,30 @@ namespace gem
         return Vector2(-x, -y);
     }
 
+    const Vector2& Vector2::operator+=(const Vector2& vec)
+    {
+        x += vec.x;
+        y += vec.y;
+        return *this;
+    }
+
+    const Vector2& Vector2::operator-=(const Vector2& vec)
+    {
+        x -= vec.x;
+        y -= vec.y;
+        return *this;
+    }
+
+    const Vector2 Vector2::operator+(const Vector2& vec) const
+    {
+        return Vector2(x + vec.x, y + vec.y);
+    }
+
+    const Vector2 Vector2::operator-(const Vector2& vec) const
+    {
+        return Vector2(x - vec.x, y - vec.y);
+    }
+
     float& Vector2::operator[](size_t i)
     {
         return (&x)[i]; // no bound checking
