@@ -30,6 +30,18 @@
     <ClInclude Include="src\gem\vector\Vector4.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="src\gem\Matrix.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gem\matrix\Matrix2.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gem\matrix\Matrix3.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gem\matrix\Matrix4.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gem\vector\Vector3.cpp">
@@ -39,6 +51,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="src\gem\vector\Vector4.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gem\matrix\Matrix2.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gem\matrix\Matrix3.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gem\matrix\Matrix4.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

@@ -132,12 +132,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\gem.h" />
+    <ClInclude Include="src\gem\Matrix.h" />
+    <ClInclude Include="src\gem\matrix\Matrix2.h" />
+    <ClInclude Include="src\gem\matrix\Matrix3.h" />
+    <ClInclude Include="src\gem\matrix\Matrix4.h" />
     <ClInclude Include="src\gem\Vector.h" />
     <ClInclude Include="src\gem\vector\Vector2.h" />
     <ClInclude Include="src\gem\vector\Vector3.h" />
     <ClInclude Include="src\gem\vector\Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\gem\matrix\Matrix2.cpp" />
+    <ClCompile Include="src\gem\matrix\Matrix3.cpp" />
+    <ClCompile Include="src\gem\matrix\Matrix4.cpp" />
     <ClCompile Include="src\gem\vector\Vector2.cpp" />
     <ClCompile Include="src\gem\vector\Vector3.cpp" />
     <ClCompile Include="src\gem\vector\Vector4.cpp" />
