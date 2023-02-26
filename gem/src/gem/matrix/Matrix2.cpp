@@ -103,6 +103,24 @@ namespace gem
         return res;
     }
 
+    const Matrix2 Matrix2::operator*(const Matrix2& mat) const
+    {
+        return Matrix2(
+            matrix[0].x * mat[0].x + matrix[1].x * mat[0].y,
+            matrix[0].y * mat[0].x + matrix[1].y * mat[0].y,
+            matrix[0].x * mat[1].x + matrix[1].x * mat[1].y,
+            matrix[0].y * mat[1].x + matrix[1].y * mat[1].y
+        );
+    }
+
+    const Vector2 Matrix2::operator*(const Vector2& vec) const
+    {
+        return Vector2(
+            matrix[0].x * vec.x + matrix[1].x * vec.y,
+            matrix[0].y * vec.x + matrix[1].y * vec.y
+        );
+    }
+
     Vector2& Matrix2::operator[](size_t i)
     {
         return matrix[i];
