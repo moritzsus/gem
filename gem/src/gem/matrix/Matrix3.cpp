@@ -17,7 +17,7 @@ namespace gem
         matrix[2].z = a;
     }
 
-    Matrix3::Matrix3(Vector3& a, Vector3& b, Vector3& c)
+    Matrix3::Matrix3(const Vector3& a, const Vector3& b, const Vector3& c)
     {
         matrix[0] = a;
         matrix[1] = b;
@@ -37,6 +37,91 @@ namespace gem
         matrix[2].x = c1;
         matrix[2].y = c2;
         matrix[2].z = c3;
+    }
+
+    const Matrix3& Matrix3::operator*=(float scalar)
+    {
+        matrix[0] *= scalar;
+        matrix[1] *= scalar;
+        matrix[2] *= scalar;
+
+        return *this;
+    }
+
+    const Matrix3& Matrix3::operator/=(float scalar)
+    {
+        matrix[0] /= scalar;
+        matrix[1] /= scalar;
+        matrix[2] /= scalar;
+
+        return *this;
+    }
+
+    const Matrix3 Matrix3::operator*(float scalar) const
+    {
+        Matrix3 res;
+
+        res[0] = matrix[0] * scalar;
+        res[1] = matrix[1] * scalar;
+        res[2] = matrix[2] * scalar;
+
+        return res;
+    }
+
+    const Matrix3 Matrix3::operator/(float scalar) const
+    {
+        Matrix3 res;
+
+        res[0] = matrix[0] / scalar;
+        res[1] = matrix[1] / scalar;
+        res[2] = matrix[2] / scalar;
+
+        return res;
+    }
+
+    const Matrix3 Matrix3::operator-() const // unary
+    {
+        return Matrix3(-matrix[0], -matrix[1], -matrix[2]);
+    }
+
+    const Matrix3& Matrix3::operator+=(const Matrix3& mat)
+    {
+        matrix[0] += mat[0];
+        matrix[1] += mat[1];
+        matrix[2] += mat[2];
+
+        return *this;
+    }
+
+    const Matrix3& Matrix3::operator-=(const Matrix3& mat)
+    {
+        matrix[0] -= mat[0];
+        matrix[1] -= mat[1];
+        matrix[2] -= mat[2];
+
+        return *this;
+    }
+
+    const Matrix3 Matrix3::operator+(const Matrix3& mat) const
+    {
+        Matrix3 res;
+
+        res[0] = matrix[0] + mat[0];
+        res[1] = matrix[1] + mat[1];
+        res[2] = matrix[2] + mat[2];
+
+        return res;
+    }
+
+    const Matrix3 Matrix3::operator-(const Matrix3& mat) const
+    {
+        Matrix3 res;
+
+        res[0] = matrix[0] - mat[0];
+        res[1] = matrix[1] - mat[1];
+        res[2] = matrix[2] - mat[2];
+
+        return res;
     }
 
     Vector3& Matrix3::operator[](size_t i)

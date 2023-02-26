@@ -11,9 +11,18 @@ namespace gem
 
     public:
         Matrix3(float a = 1.f);
-        Matrix3(Vector3& a, Vector3& b, Vector3& c);
+        Matrix3(const Vector3& a, const Vector3& b, const Vector3& c);
         Matrix3(float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3);
 
+        const Matrix3& operator*=(float scalar);
+        const Matrix3& operator/=(float scalar);
+        const Matrix3 operator*(float scalar) const;
+        const Matrix3 operator/(float scalar) const;
+        const Matrix3 operator-() const; // unary
+        const Matrix3& operator+=(const Matrix3& mat);
+        const Matrix3& operator-=(const Matrix3& mat);
+        const Matrix3 operator+(const Matrix3& mat) const;
+        const Matrix3 operator-(const Matrix3& mat) const;
         Vector3& operator[](size_t i);
         const Vector3& operator[](size_t i) const;
     };
