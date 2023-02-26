@@ -1,1 +1,20 @@
 #pragma once
+
+#include "../vector/Vector3.h"
+
+namespace gem
+{
+    struct Matrix3
+    {
+    private:
+        Vector3 matrix[3];
+
+    public:
+        Matrix3(float a = 1.f);
+        Matrix3(Vector3& a, Vector3& b, Vector3& c);
+        Matrix3(float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3);
+
+        Vector3& operator[](size_t i);
+        const Vector3& operator[](size_t i) const;
+    };
+}
