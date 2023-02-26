@@ -25,7 +25,7 @@ namespace gem
         matrix[3].w = a;
     }
 
-    Matrix4::Matrix4(Vector4& a, Vector4& b, Vector4& c, Vector4& d)
+    Matrix4::Matrix4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d)
     {
         matrix[0] = a;
         matrix[1] = b;
@@ -54,6 +54,99 @@ namespace gem
         matrix[3].y = d2;
         matrix[3].z = d3;
         matrix[3].w = d4;
+    }
+
+    const Matrix4& Matrix4::operator*=(float scalar)
+    {
+        matrix[0] *= scalar;
+        matrix[1] *= scalar;
+        matrix[2] *= scalar;
+        matrix[3] *= scalar;
+
+        return *this;
+    }
+
+    const Matrix4& Matrix4::operator/=(float scalar)
+    {
+        matrix[0] /= scalar;
+        matrix[1] /= scalar;
+        matrix[2] /= scalar;
+        matrix[3] /= scalar;
+
+        return *this;
+    }
+
+    const Matrix4 Matrix4::operator*(float scalar) const
+    {
+        Matrix4 res;
+
+        res[0] = matrix[0] * scalar;
+        res[1] = matrix[1] * scalar;
+        res[2] = matrix[2] * scalar;
+        res[3] = matrix[3] * scalar;
+
+        return res;
+    }
+
+    const Matrix4 Matrix4::operator/(float scalar) const
+    {
+        Matrix4 res;
+
+        res[0] = matrix[0] / scalar;
+        res[1] = matrix[1] / scalar;
+        res[2] = matrix[2] / scalar;
+        res[3] = matrix[3] / scalar;
+
+        return res;
+    }
+
+    const Matrix4 Matrix4::operator-() const // unary
+    {
+        return Matrix4(-matrix[0], -matrix[1], -matrix[2], -matrix[3]);
+    }
+
+    const Matrix4& Matrix4::operator+=(const Matrix4& mat)
+    {
+        matrix[0] += mat[0];
+        matrix[1] += mat[1];
+        matrix[2] += mat[2];
+        matrix[3] += mat[3];
+
+        return *this;
+    }
+
+    const Matrix4& Matrix4::operator-=(const Matrix4& mat)
+    {
+        matrix[0] -= mat[0];
+        matrix[1] -= mat[1];
+        matrix[2] -= mat[2];
+        matrix[3] -= mat[3];
+
+        return *this;
+    }
+
+    const Matrix4 Matrix4::operator+(const Matrix4& mat) const
+    {
+        Matrix4 res;
+
+        res[0] = matrix[0] + mat[0];
+        res[1] = matrix[1] + mat[1];
+        res[2] = matrix[2] + mat[2];
+        res[3] = matrix[3] + mat[3];
+
+        return res;
+    }
+
+    const Matrix4 Matrix4::operator-(const Matrix4& mat) const
+    {
+        Matrix4 res;
+
+        res[0] = matrix[0] - mat[0];
+        res[1] = matrix[1] - mat[1];
+        res[2] = matrix[2] - mat[2];
+        res[3] = matrix[3] - mat[3];
+
+        return res;
     }
 
     Vector4& Matrix4::operator[](size_t i)
