@@ -149,6 +149,41 @@ namespace gem
         return res;
     }
 
+    const Matrix4 Matrix4::operator*(const Matrix4& mat) const
+    {
+        return Matrix4(
+            matrix[0].x * mat[0].x + matrix[1].x * mat[0].y + matrix[2].x * mat[0].z + matrix[3].x * mat[0].w,
+            matrix[0].y * mat[0].x + matrix[1].y * mat[0].y + matrix[2].y * mat[0].z + matrix[3].y * mat[0].w,
+            matrix[0].z * mat[0].x + matrix[1].z * mat[0].y + matrix[2].z * mat[0].z + matrix[3].z * mat[0].w,
+            matrix[0].w * mat[0].x + matrix[1].w * mat[0].y + matrix[2].w * mat[0].z + matrix[3].w * mat[0].w,
+
+            matrix[0].x * mat[1].x + matrix[1].x * mat[1].y + matrix[2].x * mat[1].z + matrix[3].x * mat[1].w,
+            matrix[0].y * mat[1].x + matrix[1].y * mat[1].y + matrix[2].y * mat[1].z + matrix[3].y * mat[1].w,
+            matrix[0].z * mat[1].x + matrix[1].z * mat[1].y + matrix[2].z * mat[1].z + matrix[3].z * mat[1].w,
+            matrix[0].w * mat[1].x + matrix[1].w * mat[1].y + matrix[2].w * mat[1].z + matrix[3].w * mat[1].w,
+
+            matrix[0].x * mat[2].x + matrix[1].x * mat[2].y + matrix[2].x * mat[2].z + matrix[3].x * mat[2].w,
+            matrix[0].y * mat[2].x + matrix[1].y * mat[2].y + matrix[2].y * mat[2].z + matrix[3].y * mat[2].w,
+            matrix[0].z * mat[2].x + matrix[1].z * mat[2].y + matrix[2].z * mat[2].z + matrix[3].z * mat[2].w,
+            matrix[0].w * mat[2].x + matrix[1].w * mat[2].y + matrix[2].w * mat[2].z + matrix[3].w * mat[2].w,
+
+            matrix[0].x * mat[3].x + matrix[1].x * mat[3].y + matrix[2].x * mat[3].z + matrix[3].x * mat[3].w,
+            matrix[0].y * mat[3].x + matrix[1].y * mat[3].y + matrix[2].y * mat[3].z + matrix[3].y * mat[3].w,
+            matrix[0].z * mat[3].x + matrix[1].z * mat[3].y + matrix[2].z * mat[3].z + matrix[3].z * mat[3].w,
+            matrix[0].w * mat[3].x + matrix[1].w * mat[3].y + matrix[2].w * mat[3].z + matrix[3].w * mat[3].w
+        );
+    }
+
+    const Vector4 Matrix4::operator*(const Vector4& vec) const
+    {
+        return Vector4(
+            matrix[0].x * vec.x + matrix[1].x * vec.y + matrix[2].x * vec.z + matrix[3].x * vec.w,
+            matrix[0].y * vec.x + matrix[1].y * vec.y + matrix[2].y * vec.z + matrix[3].y * vec.w,
+            matrix[0].z * vec.x + matrix[1].z * vec.y + matrix[2].z * vec.z + matrix[3].z * vec.w,
+            matrix[0].w * vec.x + matrix[1].w * vec.y + matrix[2].w * vec.z + matrix[3].w * vec.w
+        );
+    }
+
     Vector4& Matrix4::operator[](size_t i)
     {
         return matrix[i];

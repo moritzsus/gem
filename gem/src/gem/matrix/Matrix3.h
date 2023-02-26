@@ -18,11 +18,16 @@ namespace gem
         const Matrix3& operator/=(float scalar);
         const Matrix3 operator*(float scalar) const;
         const Matrix3 operator/(float scalar) const;
+
         const Matrix3 operator-() const; // unary
         const Matrix3& operator+=(const Matrix3& mat);
         const Matrix3& operator-=(const Matrix3& mat);
         const Matrix3 operator+(const Matrix3& mat) const;
         const Matrix3 operator-(const Matrix3& mat) const;
+
+        const Matrix3 operator*(const Matrix3& mat) const;
+        const Vector3 operator*(const Vector3& vec) const;
+
         Vector3& operator[](size_t i);
         const Vector3& operator[](size_t i) const;
     };

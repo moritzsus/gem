@@ -124,6 +124,32 @@ namespace gem
         return res;
     }
 
+    const Matrix3 Matrix3::operator*(const Matrix3& mat) const
+    {
+        return Matrix3(
+            matrix[0].x * mat[0].x + matrix[1].x * mat[0].y + matrix[2].x * mat[0].z,
+            matrix[0].y * mat[0].x + matrix[1].y * mat[0].y + matrix[2].y * mat[0].z,
+            matrix[0].z * mat[0].x + matrix[1].z * mat[0].y + matrix[2].z * mat[0].z,
+
+            matrix[0].x * mat[1].x + matrix[1].x * mat[1].y + matrix[2].x * mat[1].z,
+            matrix[0].y * mat[1].x + matrix[1].y * mat[1].y + matrix[2].y * mat[1].z,
+            matrix[0].z * mat[1].x + matrix[1].z * mat[1].y + matrix[2].z * mat[1].z,
+
+            matrix[0].x * mat[2].x + matrix[1].x * mat[2].y + matrix[2].x * mat[2].z,
+            matrix[0].y * mat[2].x + matrix[1].y * mat[2].y + matrix[2].y * mat[2].z,
+            matrix[0].z * mat[2].x + matrix[1].z * mat[2].y + matrix[2].z * mat[2].z
+        );
+    }
+
+    const Vector3 Matrix3::operator*(const Vector3& vec) const
+    {
+        return Vector3(
+            matrix[0].x * vec.x + matrix[1].x * vec.y + matrix[2].x * vec.z,
+            matrix[0].y * vec.x + matrix[1].y * vec.y + matrix[2].y * vec.z,
+            matrix[0].z * vec.x + matrix[1].z * vec.y + matrix[2].z * vec.z
+        );
+    }
+
     Vector3& Matrix3::operator[](size_t i)
     {
         return matrix[i];
