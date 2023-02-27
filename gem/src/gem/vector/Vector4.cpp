@@ -21,6 +21,11 @@ namespace gem
         return *this / m;
     }
 
+    float Vector4::Dot(const Vector4& vec) const
+    {
+        return (x * vec.x + y * vec.y + z * vec.z + w * vec.w);
+    }
+
     const Vector4& Vector4::operator*=(float scalar)
     {
         this->x *= scalar;
