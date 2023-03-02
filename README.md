@@ -17,3 +17,4 @@
 - Basic Matrix-Matrix, Matrix-Scalar and Matrix-Vector operations
 - Normalizing Vectors
 - Calculate the Magnitude of Vectors
+- Dot and Cross Product

@@ -12,7 +12,9 @@ namespace gem
         Vector2(float x, float y);
 
         float Magnitude() const;
-        Vector2 Normalize() const;
+        const Vector2 Normalize() const;
+
+        float Dot(const Vector2& vec) const;
 
         const Vector2& operator*=(float scalar);
         const Vector2& operator/=(float scalar);
@@ -28,4 +30,9 @@ namespace gem
 
         friend std::ostream& operator<<(std::ostream& stream, const Vector2& vec);
     };
+
+    // alternative call methods for class functions
+    float magnitude(const Vector2& vec);
+    const Vector2 normalize(const Vector2& vec);
+    float dot(const Vector2& vec1, const Vector2& vec2);
 }

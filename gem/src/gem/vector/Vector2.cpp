@@ -15,10 +15,15 @@ namespace gem
         return sqrt(x * x + y * y);
     }
 
-    Vector2 Vector2::Normalize() const
+    const Vector2 Vector2::Normalize() const
     {
         float m = Magnitude();
         return *this / m;
+    }
+
+    float Vector2::Dot(const Vector2& vec) const
+    {
+        return (x * vec.x + y * vec.y);
     }
 
     const Vector2& Vector2::operator*=(float scalar)
@@ -90,5 +95,21 @@ namespace gem
     {
         stream << "<" << vec.x << "," << vec.y << ">";
         return stream;
+    }
+
+    // alternative call methods for class functions
+    float magnitude(const Vector2& vec)
+    {
+        return vec.Magnitude();
+    }
+
+    const Vector2 normalize(const Vector2& vec)
+    {
+        return vec.Normalize();
+    }
+
+    float dot(const Vector2& vec1, const Vector2& vec2)
+    {
+        return vec1.Dot(vec2);
     }
 }
