@@ -34,6 +34,15 @@ namespace gem
         return (x * vec.x + y * vec.y + z * vec.z + w * vec.w);
     }
 
+    Vector4::operator Vector2() const
+    {
+        return Vector2(x, y);
+    }
+    Vector4::operator Vector3() const
+    {
+        return Vector3(x, y, z);
+    }
+
     const Vector4& Vector4::operator*=(float scalar)
     {
         this->x *= scalar;

@@ -19,6 +19,8 @@ namespace gem
 
         float Dot(const Vector4& vec) const;
 
+        explicit operator Vector2() const;
+        explicit operator Vector3() const;
         const Vector4& operator*=(float scalar);
         const Vector4& operator/=(float scalar);
         const Vector4 operator*(float scalar) const;
