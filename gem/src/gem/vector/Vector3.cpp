@@ -39,6 +39,16 @@ namespace gem
         );
     }
 
+    const Vector3 Vector3::Project(const Vector3& vec) const
+    {
+        return vec * (Dot(vec) / vec.Dot(vec));
+    }
+
+    const Vector3 Vector3::Reject(const Vector3& vec) const
+    {
+        return *this - Project(vec);
+    }
+
     Vector3::operator Vector2() const
     {
         return Vector2(x, y);
@@ -138,5 +148,15 @@ namespace gem
     const Vector3 cross(const Vector3& vec1, const Vector3& vec2)
     {
         return vec1.Cross(vec2);
+    }
+
+    const Vector3 project(const Vector3& vec1, const Vector3& vec2)
+    {
+        return vec1.Project(vec2);
+    }
+
+    const Vector3 reject(const Vector3& vec1, const Vector3& vec2)
+    {
+        return vec1.Reject(vec2);
     }
 }

@@ -2,11 +2,8 @@
 
 int main()
 {
-    gem::Vector4 v4(24, 7, 19, 99);
-    gem::Vector3 v3(24, 7, 19);
-    gem::Vector3 res;
+    gem::Vector4 x(1, 2, -1, 1);
+    gem::Vector4 v(2, -2, 1, 0);
 
-    res = v3 + static_cast<gem::Vector3>(v4);
-
-    std::cout << res << std::endl;
+    std::cout << gem::reject(x, v) << std::endl;
 }

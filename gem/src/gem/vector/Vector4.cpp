@@ -34,6 +34,16 @@ namespace gem
         return (x * vec.x + y * vec.y + z * vec.z + w * vec.w);
     }
 
+    const Vector4 Vector4::Project(const Vector4& vec) const
+    {
+        return vec * (Dot(vec) / vec.Dot(vec));
+    }
+
+    const Vector4 Vector4::Reject(const Vector4& vec) const
+    {
+        return *this - Project(vec);
+    }
+
     Vector4::operator Vector2() const
     {
         return Vector2(x, y);
@@ -136,5 +146,15 @@ namespace gem
     float dot(const Vector4& vec1, const Vector4& vec2)
     {
         return vec1.Dot(vec2);
+    }
+
+    const Vector4 project(const Vector4& vec1, const Vector4& vec2)
+    {
+        return vec1.Project(vec2);
+    }
+
+    const Vector4 reject(const Vector4& vec1, const Vector4& vec2)
+    {
+        return vec1.Reject(vec2);
     }
 }

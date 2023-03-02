@@ -19,6 +19,9 @@ namespace gem
         float Dot(const Vector3& vec) const;
         const Vector3 Cross(const Vector3& vec) const;
 
+        const Vector3 Project(const Vector3& vec) const;
+        const Vector3 Reject(const Vector3& vec) const;
+
         explicit operator Vector2() const;
         const Vector3& operator*=(float scalar);
         const Vector3& operator/=(float scalar);
@@ -40,4 +43,6 @@ namespace gem
     const Vector3 normalize(const Vector3& vec);
     float dot(const Vector3& vec1, const Vector3& vec2);
     const Vector3 cross(const Vector3& vec1, const Vector3& vec2);
+    const Vector3 project(const Vector3& vec1, const Vector3& vec2);
+    const Vector3 reject(const Vector3& vec1, const Vector3& vec2);
 }
