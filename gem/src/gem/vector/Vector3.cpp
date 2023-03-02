@@ -39,6 +39,11 @@ namespace gem
         );
     }
 
+    Vector3::operator Vector2() const
+    {
+        return Vector2(x, y);
+    }
+
     const Vector3& Vector3::operator*=(float scalar)
     {
         this->x *= scalar;
