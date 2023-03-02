@@ -14,6 +14,9 @@ namespace gem
         float Magnitude() const;
         Vector3 Normalize() const;
 
+        float Dot(const Vector3& vec) const;
+        const Vector3 Cross(const Vector3& vec) const;
+
         const Vector3& operator*=(float scalar);
         const Vector3& operator/=(float scalar);
         const Vector3 operator*(float scalar) const;

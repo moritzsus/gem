@@ -14,6 +14,8 @@ namespace gem
         float Magnitude() const;
         Vector2 Normalize() const;
 
+        float Dot(const Vector2& vec) const;
+
         const Vector2& operator*=(float scalar);
         const Vector2& operator/=(float scalar);
         const Vector2 operator*(float scalar) const;

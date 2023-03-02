@@ -21,6 +21,20 @@ namespace gem
         return *this / m;
     }
 
+    float Vector3::Dot(const Vector3& vec) const
+    {
+        return (x * vec.x + y * vec.y + z * vec.z);
+    }
+
+    const Vector3 Vector3::Cross(const Vector3& vec) const
+    {
+        return Vector3(
+            y * vec.z - z * vec.y,
+            z * vec.x - x * vec.z,
+            x * vec.y - y * vec.x
+        );
+    }
+
     const Vector3& Vector3::operator*=(float scalar)
     {
         this->x *= scalar;
