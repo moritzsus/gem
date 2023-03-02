@@ -2,10 +2,11 @@
 
 int main()
 {
-    gem::Vector2 v2(1, 2);
-    gem::Vector3 v3(v2, 9);
-    gem::Vector4 v4(v3, 24);
+    gem::Vector4 v4(24, 7, 19, 99);
+    gem::Vector3 v3(24, 7, 19);
+    gem::Vector3 res;
 
-    std::cout << v3 << std::endl;
-    std::cout << v4 << std::endl;
+    res = v3 + static_cast<gem::Vector3>(v4);
+
+    std::cout << res << std::endl;
 }
