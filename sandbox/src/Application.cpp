@@ -2,10 +2,10 @@
 
 int main()
 {
-    gem::Vector3 v1(1, 2, 0);
-    gem::Vector3 v2(3, -1, 0);
+    gem::Vector2 v2(1, 2);
+    gem::Vector3 v3(v2, 9);
+    gem::Vector4 v4(v3, 24);
 
-    gem::Vector3 r = v1.Cross(v2);
-
-    std::cout << r << std::endl;
+    std::cout << v3 << std::endl;
+    std::cout << v4 << std::endl;
 }

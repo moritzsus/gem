@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "Vector3.h"
 
 namespace gem
 {
@@ -10,9 +11,11 @@ namespace gem
 
         Vector4();
         Vector4(float x, float y, float z, float w);
+        Vector4(const Vector2& vec, float z, float w);
+        Vector4(const Vector3& vec, float w);
 
         float Magnitude() const;
-        Vector4 Normalize() const;
+        const Vector4 Normalize() const;
 
         float Dot(const Vector4& vec) const;
 
@@ -30,4 +33,9 @@ namespace gem
 
         friend std::ostream& operator<<(std::ostream& stream, const Vector4& vec);
     };
+
+    // alternative call methods for class functions
+    float magnitude(const Vector4& vec);
+    const Vector4 normalize(const Vector4& vec);
+    float dot(const Vector4& vec1, const Vector4& vec2);
 }

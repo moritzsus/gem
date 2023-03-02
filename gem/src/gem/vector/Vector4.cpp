@@ -10,12 +10,20 @@ namespace gem
         : x(x), y(y), z(z), w(w)
     { }
 
+    Vector4::Vector4(const Vector2& vec, float z, float w)
+        : x(vec.x), y(vec.y), z(z), w(w)
+    { }
+
+    Vector4::Vector4(const Vector3& vec, float w)
+        : x(vec.x), y(vec.y), z(vec.z), w(w)
+    { }
+
     float Vector4::Magnitude() const
     {
         return sqrt(x * x + y * y + z * z + w * w);
     }
 
-    Vector4 Vector4::Normalize() const
+    const Vector4 Vector4::Normalize() const
     {
         float m = Magnitude();
         return *this / m;
@@ -103,5 +111,21 @@ namespace gem
     {
         stream << "<" << vec.x << "," << vec.y << "," << vec.z << "," << vec.w << ">";
         return stream;
+    }
+
+    // alternative call methods for class functions
+    float magnitude(const Vector4& vec)
+    {
+        return vec.Magnitude();
+    }
+
+    const Vector4 normalize(const Vector4& vec)
+    {
+        return vec.Normalize();
+    }
+
+    float dot(const Vector4& vec1, const Vector4& vec2)
+    {
+        return vec1.Dot(vec2);
     }
 }
