@@ -18,3 +18,4 @@
 - Normalizing Vectors
 - Calculate the Magnitude of Vectors
 - Dot and Cross Product
+- Vector Projection and Rejection
