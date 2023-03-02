@@ -19,6 +19,9 @@ namespace gem
 
         float Dot(const Vector4& vec) const;
 
+        const Vector4 Project(const Vector4& vec) const;
+        const Vector4 Reject(const Vector4& vec) const;
+
         explicit operator Vector2() const;
         explicit operator Vector3() const;
         const Vector4& operator*=(float scalar);
@@ -40,4 +43,6 @@ namespace gem
     float magnitude(const Vector4& vec);
     const Vector4 normalize(const Vector4& vec);
     float dot(const Vector4& vec1, const Vector4& vec2);
+    const Vector4 project(const Vector4& vec1, const Vector4& vec2);
+    const Vector4 reject(const Vector4& vec1, const Vector4& vec2);
 }
