@@ -7,6 +7,7 @@ namespace gem
     struct Matrix3
     {
     private:
+        //TODO store as 2d matrix of floats -> [][] access with math convention, but stored in col major order?
         Vector3 matrix[3];
 
     public:
@@ -31,4 +32,6 @@ namespace gem
         Vector3& operator[](size_t i);
         const Vector3& operator[](size_t i) const;
     };
+
+    //TODO alternative call methods for class functions
 }
