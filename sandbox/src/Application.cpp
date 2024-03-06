@@ -2,9 +2,15 @@
 
 int main()
 {
-    gem::Vector4 x(1, 2, -1, 1);
-    gem::Vector4 v(2, -2, 1, 0);
+    gem::Matrix4 m(2.f, 0.f, 3.f, -1.f, 1.f, 2.f, 1.f, 4.f, 4.f, -1.f, 0.f, -2.f, -2.f, 3.f, -3.f, 1.f);
 
-    std::cout << v << std::endl;
-    std::cout << gem::project(v, x) + gem::reject(v, x) << std::endl;
+    std::cout << m[0] << std::endl;
+    std::cout << m[1] << std::endl;
+    std::cout << m[2] << std::endl;
+    std::cout << m[3] << std::endl;
+
+    float det = m.Det();
+    std::cout << det << std::endl;
+    float det2 = gem::det(m);
+    std::cout << det2 << std::endl;
 }

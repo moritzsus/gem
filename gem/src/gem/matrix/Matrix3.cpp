@@ -39,6 +39,18 @@ namespace gem
         matrix[2].z = c3;
     }
 
+    float Matrix3::Det() const
+    {
+        return (
+              matrix[0].x * matrix[1].y * matrix[2].z
+            + matrix[1].x * matrix[2].y * matrix[0].z
+            + matrix[2].x * matrix[0].y * matrix[1].z
+            - matrix[0].z * matrix[1].y * matrix[2].x
+            - matrix[1].z * matrix[2].y * matrix[0].x
+            - matrix[2].z * matrix[0].y * matrix[1].x
+            );
+    }
+
     const Matrix3& Matrix3::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -158,5 +170,11 @@ namespace gem
     const Vector3& Matrix3::operator[](size_t i) const
     {
         return matrix[i];
+    }
+
+    // alternative call methods for class functions
+    float det(const Matrix3& m)
+    {
+        return m.Det();
     }
 }

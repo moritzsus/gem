@@ -26,6 +26,11 @@ namespace gem
         matrix[1].y = b2;
     }
 
+    float Matrix2::Det() const 
+    {
+        return (matrix[0].x * matrix[1].y) - (matrix[1].x * matrix[0].y);
+    }
+
     const Matrix2& Matrix2::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -129,5 +134,11 @@ namespace gem
     const Vector2& Matrix2::operator[](size_t i) const
     {
         return matrix[i];
+    }
+
+    // alternative call methods for class functions
+    float det(const Matrix2& m)
+    {
+        return m.Det();
     }
 }

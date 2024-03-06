@@ -15,6 +15,8 @@ namespace gem
         Matrix3(const Vector3& a, const Vector3& b, const Vector3& c);
         Matrix3(float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3);
 
+        float Det() const;
+
         const Matrix3& operator*=(float scalar);
         const Matrix3& operator/=(float scalar);
         const Matrix3 operator*(float scalar) const;
@@ -33,5 +35,6 @@ namespace gem
         const Vector3& operator[](size_t i) const;
     };
 
-    //TODO alternative call methods for class functions
+    // alternative call methods for class functions
+    float det(const Matrix3& m);
 }

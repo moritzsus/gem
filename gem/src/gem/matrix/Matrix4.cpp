@@ -1,4 +1,5 @@
 #include "Matrix4.h"
+#include <iostream>
 
 namespace gem
 {
@@ -54,6 +55,32 @@ namespace gem
         matrix[3].y = d2;
         matrix[3].z = d3;
         matrix[3].w = d4;
+    }
+
+    float Matrix4::Det() const
+    {
+        if (matrix[0].w == 0.f && matrix[1].w == 0.f && matrix[2].w == 0.f && matrix[3].w == 1.f)
+        {
+            return Det3x3(matrix[0].x, matrix[0].y, matrix[0].z, matrix[1].x, matrix[1].y, matrix[1].z, matrix[2].x, matrix[2].y, matrix[2].z);
+        }
+        return (
+              matrix[0].x * Det3x3(matrix[1].y, matrix[1].z, matrix[1].w, matrix[2].y, matrix[2].z, matrix[2].w, matrix[3].y, matrix[3].z, matrix[3].w)
+            - matrix[0].y * Det3x3(matrix[1].x, matrix[1].z, matrix[1].w, matrix[2].x, matrix[2].z, matrix[2].w, matrix[3].x, matrix[3].z, matrix[3].w)
+            + matrix[0].z * Det3x3(matrix[1].x, matrix[1].y, matrix[1].w, matrix[2].x, matrix[2].y, matrix[2].w, matrix[3].x, matrix[3].y, matrix[3].w)
+            - matrix[0].w * Det3x3(matrix[1].x, matrix[1].y, matrix[1].z, matrix[2].x, matrix[2].y, matrix[2].z, matrix[3].x, matrix[3].y, matrix[3].z)
+            );
+    }
+
+    float Matrix4::Det3x3(float a1, float a2, float a3, float b1, float b2, float b3, float c1, float c2, float c3) const
+    {
+        return (
+              a1 * b2 * c3
+            + b1 * c2 * a3
+            + c1 * a2 * b3
+            - a3 * b2 * c1
+            - b3 * c2 * a1
+            - c3 * a2 * b1
+            );
     }
 
     const Matrix4& Matrix4::operator*=(float scalar)
@@ -192,5 +219,11 @@ namespace gem
     const Vector4& Matrix4::operator[](size_t i) const
     {
         return matrix[i];
+    }
+
+    // alternative call methods for class functions
+    float det(const Matrix4& m)
+    {
+        return m.Det();
     }
 }
