@@ -1,6 +1,6 @@
 # GEM
 
-## C++ Game Engine Math Library for training purpose.
+## C++ Game Engine Math Library.
 
 **All matrices are in column-major order.**
 
