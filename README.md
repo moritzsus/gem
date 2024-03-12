@@ -19,3 +19,6 @@
 - Calculate the Magnitude of Vectors
 - Dot and Cross Product
 - Vector Projection and Rejection
+- Transposing a Matrix
+- Calculate Matrix Determinats
+- Calculate the Inverse of a Matrix

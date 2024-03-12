@@ -26,6 +26,30 @@ namespace gem
         matrix[1].y = b2;
     }
 
+    const Matrix2 Matrix2::Transpose() const
+    {
+        return Matrix2(matrix[0][0], matrix[1][0], matrix[0][1], matrix[1][1]);
+    }
+
+    float Matrix2::Det() const 
+    {
+        return (matrix[0].x * matrix[1].y) - (matrix[1].x * matrix[0].y);
+    }
+
+    const Matrix2 Matrix2::Inverse() const
+    {
+        float det = Det();
+
+        if (det == 0)
+        {
+            //TODO log or try catch handling
+            std::cout << "No Inverse" << std::endl;
+            return Matrix2(0.f);
+        }
+
+        return Matrix2(matrix[1][1], -matrix[0][1], -matrix[1][0], matrix[0][0]) * (1 / Det());
+    }
+
     const Matrix2& Matrix2::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -129,5 +153,21 @@ namespace gem
     const Vector2& Matrix2::operator[](size_t i) const
     {
         return matrix[i];
+    }
+
+    // alternative call methods for class functions
+    const Matrix2 transpose(const Matrix2& m)
+    {
+        return m.Transpose();
+    }
+
+    float det(const Matrix2& m)
+    {
+        return m.Det();
+    }
+
+    const Matrix2 inverse(const Matrix2& m)
+    {
+        return m.Inverse();
     }
 }

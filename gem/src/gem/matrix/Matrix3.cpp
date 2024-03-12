@@ -39,6 +39,48 @@ namespace gem
         matrix[2].z = c3;
     }
 
+    const Matrix3 Matrix3::Transpose() const
+    {
+        return Matrix3(matrix[0][0], matrix[1][0], matrix[2][0],
+                       matrix[0][1], matrix[1][1], matrix[2][1],
+                       matrix[0][2], matrix[1][2], matrix[2][2]);
+    }
+
+    float Matrix3::Det() const
+    {
+        return (
+              matrix[0].x * matrix[1].y * matrix[2].z
+            + matrix[1].x * matrix[2].y * matrix[0].z
+            + matrix[2].x * matrix[0].y * matrix[1].z
+            - matrix[0].z * matrix[1].y * matrix[2].x
+            - matrix[1].z * matrix[2].y * matrix[0].x
+            - matrix[2].z * matrix[0].y * matrix[1].x
+            );
+    }
+
+    const Matrix3 Matrix3::Inverse() const
+    {
+        const Vector3 v0 = matrix[1].Cross(matrix[2]);
+        const Vector3 v1 = matrix[2].Cross(matrix[0]);
+        const Vector3 v2 = matrix[0].Cross(matrix[1]);
+
+        // Determinant = Skalar triple product (a x b * c)
+        float det = v2.Dot(matrix[2]);
+
+        if (det == 0)
+        {
+            //TODO log or try catch handling
+            std::cout << "No Inverse" << std::endl;
+            return Matrix3(0.f);
+        }
+
+        float detInverse = 1 / det;
+
+        return Matrix3(v0.x * detInverse, v1.x * detInverse, v2.x * detInverse,
+                       v0.y * detInverse, v1.y * detInverse, v2.y * detInverse, 
+                       v0.z * detInverse, v1.z * detInverse, v2.z * detInverse);
+    }
+
     const Matrix3& Matrix3::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -158,5 +200,21 @@ namespace gem
     const Vector3& Matrix3::operator[](size_t i) const
     {
         return matrix[i];
+    }
+
+    // alternative call methods for class functions
+    const Matrix3 transpose(const Matrix3& m)
+    {
+        return m.Transpose();
+    }
+
+    float det(const Matrix3& m)
+    {
+        return m.Det();
+    }
+
+    const Matrix3 inverse(const Matrix3& m)
+    {
+        return m.Inverse();
     }
 }
