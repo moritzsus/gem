@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../vector/Vector3.h"
 #include "../vector/Vector4.h"
 
 namespace gem
@@ -14,7 +15,9 @@ namespace gem
         Matrix4(const Vector4& a, const Vector4& b, const Vector4& c, const Vector4& d);
         Matrix4(float a1, float a2, float a3, float a4, float b1, float b2, float b3, float b4, float c1, float c2, float c3, float c4, float d1, float d2, float d3, float d4);
 
+        const Matrix4 Transpose() const;
         float Det() const;
+        const Matrix4 Inverse() const;
 
         const Matrix4& operator*=(float scalar);
         const Matrix4& operator/=(float scalar);
@@ -38,5 +41,7 @@ namespace gem
     };
 
     // alternative call methods for class functions
+    const Matrix4 transpose(const Matrix4& m);
     float det(const Matrix4& m);
+    const Matrix4 inverse(const Matrix4& m);
 }

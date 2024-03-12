@@ -14,7 +14,9 @@ namespace gem
         Matrix2(const Vector2& a, const Vector2& b);
         Matrix2(float a1, float a2, float b1, float b2);
 
+        const Matrix2 Transpose() const;
         float Det() const;
+        const Matrix2 Inverse() const;
 
         const Matrix2& operator*=(float scalar);
         const Matrix2& operator/=(float scalar);
@@ -35,5 +37,7 @@ namespace gem
     };
 
     // alternative call methods for class functions
+    const Matrix2 transpose(const Matrix2& m);
     float det(const Matrix2& m);
+    const Matrix2 inverse(const Matrix2& m);
 }

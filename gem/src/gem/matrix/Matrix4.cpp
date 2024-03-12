@@ -57,6 +57,14 @@ namespace gem
         matrix[3].w = d4;
     }
 
+    const Matrix4 Matrix4::Transpose() const
+    {
+        return Matrix4(matrix[0][0], matrix[1][0], matrix[2][0], matrix[3][0],
+                       matrix[0][1], matrix[1][1], matrix[2][1], matrix[3][1],
+                       matrix[0][2], matrix[1][2], matrix[2][2], matrix[3][2],
+                       matrix[0][3], matrix[1][3], matrix[2][3], matrix[3][3]);
+    }
+
     float Matrix4::Det() const
     {
         if (matrix[0].w == 0.f && matrix[1].w == 0.f && matrix[2].w == 0.f && matrix[3].w == 1.f)
@@ -81,6 +89,47 @@ namespace gem
             - b3 * c2 * a1
             - c3 * a2 * b1
             );
+    }
+
+    const Matrix4 Matrix4::Inverse() const
+    {
+        const Vector3& v0 = reinterpret_cast<const Vector3&>(matrix[0]);
+        const Vector3& v1 = reinterpret_cast<const Vector3&>(matrix[1]);
+        const Vector3& v2 = reinterpret_cast<const Vector3&>(matrix[2]);
+        const Vector3& v3 = reinterpret_cast<const Vector3&>(matrix[3]);
+
+        float x = matrix[0].w;
+        float y = matrix[1].w;
+        float z = matrix[2].w;
+        float w = matrix[3].w;
+
+        Vector3 s = v0.Cross(v1);
+        Vector3 t = v2.Cross(v3);
+        Vector3 u = v0 * y - v1 * x;
+        Vector3 v = v2 * w - v3 * z;
+
+        float det = s.Dot(v) + t.Dot(u);
+
+        if (det == 0) {
+            //TODO log or try catch handling
+            std::cout << "No Inverse" << std::endl;
+            return Matrix4(0.f);
+        }
+
+        s *= 1 / det;
+        t *= 1 / det;
+        u *= 1 / det;
+        v *= 1 / det;
+
+        const Vector4 row0(v1.Cross(v) + t * y, (-v1).Dot(t));
+        const Vector4 row1(v.Cross(v0) - t * x, v0.Dot(t));
+        const Vector4 row2(v3.Cross(u) + s * w, (-v3).Dot(s));
+        const Vector4 row3(u.Cross(v2) - s * z, v2.Dot(s));
+
+        return Matrix4(row0.x, row1.x, row2.x, row3.x,
+                       row0.y, row1.y, row2.y, row3.y,
+                       row0.z, row1.z, row2.z, row3.z,
+                       row0.w, row1.w, row2.w, row3.w);
     }
 
     const Matrix4& Matrix4::operator*=(float scalar)
@@ -222,8 +271,18 @@ namespace gem
     }
 
     // alternative call methods for class functions
+    const Matrix4 transpose(const Matrix4& m)
+    {
+        return m.Transpose();
+    }
+
     float det(const Matrix4& m)
     {
         return m.Det();
+    }
+
+    const Matrix4 inverse(const Matrix4& m)
+    {
+        return m.Inverse();
     }
 }
