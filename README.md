@@ -22,3 +22,4 @@
 - Transposing a Matrix
 - Calculate Matrix Determinats
 - Calculate the Inverse of a Matrix
+- Calculate Rotation Matrices based on a given angle and axis
