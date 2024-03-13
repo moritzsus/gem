@@ -54,6 +54,11 @@ namespace gem
         return Vector2(x, y);
     }
 
+    bool Vector3::operator==(const Vector3& vec) const
+    {
+        return (x == vec.x && y == vec.y && z == vec.z);
+    }
+
     const Vector3& Vector3::operator*=(float scalar)
     {
         this->x *= scalar;

@@ -84,6 +84,11 @@ namespace gem
                        v0.z * detInverse, v1.z * detInverse, v2.z * detInverse);
     }
 
+    bool Matrix3::operator==(const Matrix3& mat) const
+    {
+        return (matrix[0] == mat.matrix[0] && matrix[1] == mat.matrix[1] && matrix[2] == mat.matrix[2]);
+    }
+
     const Matrix3& Matrix3::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -206,19 +211,19 @@ namespace gem
     }
 
     // alternative call methods for class functions
-    const Matrix3 transpose(const Matrix3& m)
+    const Matrix3 transpose(const Matrix3& mat)
     {
-        return m.Transpose();
+        return mat.Transpose();
     }
 
-    float det(const Matrix3& m)
+    float det(const Matrix3& mat)
     {
-        return m.Det();
+        return mat.Det();
     }
 
-    const Matrix3 inverse(const Matrix3& m)
+    const Matrix3 inverse(const Matrix3& mat)
     {
-        return m.Inverse();
+        return mat.Inverse();
     }
 
     const Matrix3 makeRotationXDeg(float angleInDeg)

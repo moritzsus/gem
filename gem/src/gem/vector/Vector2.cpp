@@ -36,6 +36,11 @@ namespace gem
         return *this - Project(vec);
     }
 
+    bool Vector2::operator==(const Vector2& vec) const
+    {
+        return (x == vec.x && y == vec.y);
+    }
+
     const Vector2& Vector2::operator*=(float scalar)
     {
         this->x *= scalar;

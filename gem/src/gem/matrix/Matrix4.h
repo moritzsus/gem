@@ -19,20 +19,18 @@ namespace gem
         float Det() const;
         const Matrix4 Inverse() const;
 
+        bool operator==(const Matrix4& mat) const;
         const Matrix4& operator*=(float scalar);
         const Matrix4& operator/=(float scalar);
         const Matrix4 operator*(float scalar) const;
         const Matrix4 operator/(float scalar) const;
-
         const Matrix4 operator-() const; // unary
         const Matrix4& operator+=(const Matrix4& mat);
         const Matrix4& operator-=(const Matrix4& mat);
         const Matrix4 operator+(const Matrix4& mat) const;
         const Matrix4 operator-(const Matrix4& mat) const;
-
         const Matrix4 operator*(const Matrix4& mat) const;
         const Vector4 operator*(const Vector4& vec) const;
-
         Vector4& operator[](size_t i);
         const Vector4& operator[](size_t i) const;
 
@@ -41,7 +39,7 @@ namespace gem
     };
 
     // alternative call methods for class functions
-    const Matrix4 transpose(const Matrix4& m);
-    float det(const Matrix4& m);
-    const Matrix4 inverse(const Matrix4& m);
+    const Matrix4 transpose(const Matrix4& mat);
+    float det(const Matrix4& mat);
+    const Matrix4 inverse(const Matrix4& mat);
 }

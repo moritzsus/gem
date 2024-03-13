@@ -19,6 +19,7 @@ namespace gem
         const Vector2 Project(const Vector2& vec) const;
         const Vector2 Reject(const Vector2& vec) const;
 
+        bool operator==(const Vector2& vec) const;
         const Vector2& operator*=(float scalar);
         const Vector2& operator/=(float scalar);
         const Vector2 operator*(float scalar) const;
