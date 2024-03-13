@@ -1,6 +1,6 @@
 # GEM
 
-## C++ Game Engine Math Library for training purpose.
+## C++ Game Engine Math Library.
 
 **All matrices are in column-major order.**
 
@@ -19,4 +19,6 @@
 - Calculate the Magnitude of Vectors
 - Dot and Cross Product
 - Vector Projection and Rejection
+- Transposing a Matrix
 - Calculate Matrix Determinats
+- Calculate the Inverse of a Matrix
