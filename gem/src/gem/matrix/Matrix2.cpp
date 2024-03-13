@@ -1,4 +1,7 @@
+#define _USE_MATH_DEFINES
+
 #include "Matrix2.h"
+#include <cmath>
 
 namespace gem
 {
@@ -169,5 +172,18 @@ namespace gem
     const Matrix2 inverse(const Matrix2& m)
     {
         return m.Inverse();
+    }
+
+    // returns aMatrix2 which can rotate vectors about given angle
+    const Matrix2 make2dRotationDeg(float angleInDeg)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        return Matrix2(cosf(radians), sinf(radians), -sinf(radians), cosf(radians));
+    }
+
+    // returns aMatrix2 which can rotate vectors about given angle
+    const Matrix2 make2dRotationRad(float angleInRad)
+    {
+        return Matrix2(cosf(angleInRad), sinf(angleInRad), -sinf(angleInRad), cosf(angleInRad));
     }
 }

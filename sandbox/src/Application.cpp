@@ -2,45 +2,40 @@
 
 int main()
 {
-    gem::Matrix4 m1(1.f, 0.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f, 1.f);
-    gem::Matrix4 m2(1.f, 2.f, -1.f, 2.f, -3.0f, 0.5f, 2.f, 1.f, 1.f, 3.f, 5.f, 24.f, 7.f, -2.f, 0.f, -1.f);
-    gem::Matrix4 m3(1.f, 2.f, 1.f, 0.f, -3.0f, 0.f, 2.f, 0.f, 1.f, -4.f, 9.f, 0.f, 6.f, 6.f, 6.f, 0.f);
+    const float pi = 3.14159265358f;
 
-    std::cout << "M1:" << std::endl;
-    for (int i = 0; i < 4; i++)
+    gem::Vector3 ax(1.f, -1.5f, 3.3f);
+    ax = ax.Normalize();
+    std::cout << ax.Magnitude() << std::endl;
+
+    gem::Vector3 rot(2.f, 3.f, 5.f);
+
+    gem::Matrix3 mRotDeg = gem::makeRotationDeg(90.f, ax);
+    gem::Matrix3 mRotRad = gem::makeRotationRad(90.f * (pi / 180.f), ax);
+
+    std::cout << "MatrixDeg:" << std::endl;
+    for (int i = 0; i < 3; i++)
     {
-        std::cout << m1[i] << std::endl;
+        std::cout << mRotDeg[i] << std::endl;
     }
-    std::cout << "M2:" << std::endl;
-    for (int i = 0; i < 4; i++)
+    std::cout << "MatrixRod:" << std::endl;
+    for (int i = 0; i < 3; i++)
     {
-        std::cout << m2[i] << std::endl;
-    }
-    std::cout << "M3:" << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << m3[i] << std::endl;
+        std::cout << mRotRad[i] << std::endl;
     }
     std::cout << std::endl;
-    std::cout << std::endl;
 
-    gem::Matrix4 mi1 = m1.Transpose();
-    gem::Matrix4 mi2 = m2.Transpose();
-    gem::Matrix4 mi3 = m3.Transpose();
+    std::cout << rot << std::endl;
 
-    std::cout << "MI1:" << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << mi1[i] << std::endl;
-    }
-    std::cout << "MI2:" << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << mi2[i] << std::endl;
-    }
-    std::cout << "MI3:" << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << mi3[i] << std::endl;
-    }
+    rot = mRotDeg * rot;
+    std::cout << rot << std::endl;
+
+    rot = mRotRad * rot;
+    std::cout << rot << std::endl;
+
+    rot = mRotDeg * rot;
+    std::cout << rot << std::endl;
+
+    rot = mRotRad * rot;
+    std::cout << rot << std::endl;
 }

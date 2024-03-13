@@ -40,4 +40,7 @@ namespace gem
     const Matrix2 transpose(const Matrix2& m);
     float det(const Matrix2& m);
     const Matrix2 inverse(const Matrix2& m);
+
+    const Matrix2 make2dRotationDeg(float angleInDeg);
+    const Matrix2 make2dRotationRad(float angleInRad);
 }
