@@ -22,8 +22,8 @@ namespace gem
         const Vector3 Project(const Vector3& vec) const;
         const Vector3 Reject(const Vector3& vec) const;
 
-        //TODO operator* (componentwise?)
         explicit operator Vector2() const;
+        bool operator==(const Vector3& vec) const;
         const Vector3& operator*=(float scalar);
         const Vector3& operator/=(float scalar);
         const Vector3 operator*(float scalar) const;

@@ -24,6 +24,7 @@ namespace gem
 
         explicit operator Vector2() const;
         explicit operator Vector3() const;
+        bool operator==(const Vector4& vec) const;
         const Vector4& operator*=(float scalar);
         const Vector4& operator/=(float scalar);
         const Vector4 operator*(float scalar) const;

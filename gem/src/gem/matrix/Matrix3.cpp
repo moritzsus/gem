@@ -1,4 +1,7 @@
+#define _USE_MATH_DEFINES
+
 #include "Matrix3.h"
+#include <cmath>
 
 namespace gem
 {
@@ -79,6 +82,11 @@ namespace gem
         return Matrix3(v0.x * detInverse, v1.x * detInverse, v2.x * detInverse,
                        v0.y * detInverse, v1.y * detInverse, v2.y * detInverse, 
                        v0.z * detInverse, v1.z * detInverse, v2.z * detInverse);
+    }
+
+    bool Matrix3::operator==(const Matrix3& mat) const
+    {
+        return (matrix[0] == mat.matrix[0] && matrix[1] == mat.matrix[1] && matrix[2] == mat.matrix[2]);
     }
 
     const Matrix3& Matrix3::operator*=(float scalar)
@@ -203,18 +211,88 @@ namespace gem
     }
 
     // alternative call methods for class functions
-    const Matrix3 transpose(const Matrix3& m)
+    const Matrix3 transpose(const Matrix3& mat)
     {
-        return m.Transpose();
+        return mat.Transpose();
     }
 
-    float det(const Matrix3& m)
+    float det(const Matrix3& mat)
     {
-        return m.Det();
+        return mat.Det();
     }
 
-    const Matrix3 inverse(const Matrix3& m)
+    const Matrix3 inverse(const Matrix3& mat)
     {
-        return m.Inverse();
+        return mat.Inverse();
+    }
+
+    const Matrix3 makeRotationXDeg(float angleInDeg)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        return Matrix3(1.f, 0.f, 0.f,
+                       0.f, cosf(radians), sinf(radians),
+                       0.f, -sinf(radians), cosf(radians));
+    }
+
+    const Matrix3 makeRotationYDeg(float angleInDeg)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        return Matrix3(cosf(radians), 0.f, -sinf(radians),
+                       0.f, 1.f, 0.f,
+                       sinf(radians), 0.f, cosf(radians));
+    }
+
+    const Matrix3 makeRotationZDeg(float angleInDeg)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        return Matrix3(cosf(radians), sinf(radians), 0.f,
+                      -sinf(radians), cosf(radians), 0.f,
+                       0.f, 0.f, 1.f);
+    }
+
+    // Rotates around axis (axis has to be unit vector)
+    const Matrix3 makeRotationDeg(float angleInDeg, const Vector3& axis)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        float si = sinf(radians);
+        float co = cosf(radians);
+        float sco = 1 - co;
+
+        return Matrix3(co + sco * axis.x * axis.x, sco * axis.x * axis.y + si * axis.z, sco * axis.x * axis.z - si * axis.y,
+                       sco * axis.x * axis.y - si * axis.z, co + sco * axis.y * axis.y, sco * axis.y * axis.z + si * axis.x,
+                       sco * axis.x * axis.z + si * axis.y, sco * axis.y * axis.z - si * axis.x, co + sco * axis.z * axis.z);
+    }
+
+    const Matrix3 makeRotationXRad(float angleInRad)
+    {
+        return Matrix3(1.f, 0.f, 0.f,
+                       0.f, cosf(angleInRad), sinf(angleInRad),
+                       0.f, -sinf(angleInRad), cosf(angleInRad));
+    }
+
+    const Matrix3 makeRotationYRad(float angleInRad)
+    {
+        return Matrix3(cosf(angleInRad), 0.f, -sinf(angleInRad),
+                       0.f, 1.f, 0.f,
+                       sinf(angleInRad), 0.f, cosf(angleInRad));
+    }
+
+    const Matrix3 makeRotationZRad(float angleInRad)
+    {
+        return Matrix3(cosf(angleInRad), sinf(angleInRad), 0.f,
+                      -sinf(angleInRad), cosf(angleInRad), 0.f,
+                       0.f, 0.f, 1.f);
+    }
+
+    // Rotates around axis (axis has to be unit vector)
+    const Matrix3 makeRotationRad(float angleInRad, const Vector3& axis)
+    {
+        float si = sinf(angleInRad);
+        float co = cosf(angleInRad);
+        float sco = 1 - co;
+
+        return Matrix3(co + sco * axis.x * axis.x, sco * axis.x * axis.y + si * axis.z, sco * axis.x * axis.z - si * axis.y,
+                       sco * axis.x * axis.y - si * axis.z, co + sco * axis.y * axis.y, sco * axis.y * axis.z + si * axis.x,
+                       sco * axis.x * axis.z + si * axis.y, sco * axis.y * axis.z - si * axis.x, co + sco * axis.z * axis.z);
     }
 }

@@ -1,4 +1,7 @@
+#define _USE_MATH_DEFINES
+
 #include "Matrix2.h"
+#include <cmath>
 
 namespace gem
 {
@@ -48,6 +51,11 @@ namespace gem
         }
 
         return Matrix2(matrix[1][1], -matrix[0][1], -matrix[1][0], matrix[0][0]) * (1 / Det());
+    }
+
+    bool Matrix2::operator==(const Matrix2& mat) const
+    {
+        return (matrix[0] == mat.matrix[0] && matrix[1] == mat.matrix[1]);
     }
 
     const Matrix2& Matrix2::operator*=(float scalar)
@@ -156,18 +164,31 @@ namespace gem
     }
 
     // alternative call methods for class functions
-    const Matrix2 transpose(const Matrix2& m)
+    const Matrix2 transpose(const Matrix2& mat)
     {
-        return m.Transpose();
+        return mat.Transpose();
     }
 
-    float det(const Matrix2& m)
+    float det(const Matrix2& mat)
     {
-        return m.Det();
+        return mat.Det();
     }
 
-    const Matrix2 inverse(const Matrix2& m)
+    const Matrix2 inverse(const Matrix2& mat)
     {
-        return m.Inverse();
+        return mat.Inverse();
+    }
+
+    // returns aMatrix2 which can rotate vectors about given angle
+    const Matrix2 make2dRotationDeg(float angleInDeg)
+    {
+        float radians = angleInDeg * (M_PI / 180.f);
+        return Matrix2(cosf(radians), sinf(radians), -sinf(radians), cosf(radians));
+    }
+
+    // returns aMatrix2 which can rotate vectors about given angle
+    const Matrix2 make2dRotationRad(float angleInRad)
+    {
+        return Matrix2(cosf(angleInRad), sinf(angleInRad), -sinf(angleInRad), cosf(angleInRad));
     }
 }

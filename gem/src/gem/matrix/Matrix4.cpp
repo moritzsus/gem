@@ -132,6 +132,11 @@ namespace gem
                        row0.w, row1.w, row2.w, row3.w);
     }
 
+    bool Matrix4::operator==(const Matrix4& mat) const
+    {
+        return (matrix[0] == mat.matrix[0] && matrix[1] == mat.matrix[1] && matrix[2] == mat.matrix[2] && matrix[3] == mat.matrix[3]);
+    }
+
     const Matrix4& Matrix4::operator*=(float scalar)
     {
         matrix[0] *= scalar;
@@ -271,18 +276,18 @@ namespace gem
     }
 
     // alternative call methods for class functions
-    const Matrix4 transpose(const Matrix4& m)
+    const Matrix4 transpose(const Matrix4& mat)
     {
-        return m.Transpose();
+        return mat.Transpose();
     }
 
-    float det(const Matrix4& m)
+    float det(const Matrix4& mat)
     {
-        return m.Det();
+        return mat.Det();
     }
 
-    const Matrix4 inverse(const Matrix4& m)
+    const Matrix4 inverse(const Matrix4& mat)
     {
-        return m.Inverse();
+        return mat.Inverse();
     }
 }
